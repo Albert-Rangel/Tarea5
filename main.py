@@ -1,4 +1,3 @@
-
 #Programacion numerica y no numerica-tarea 5 
 
     #ANDERSON ESCOBAR - DCN0501IIV1
@@ -6,6 +5,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 def f(x):
     """Calcula el valor de la función f(x) = x + log(x)."""
@@ -30,43 +30,39 @@ def obtener_datos_usuario():
         except ValueError:
             print("Entrada inválida. Por favor, ingrese números.")
 
-def graficar_funcion(f, xi, xf, n):
-    """Grafica la función f en el intervalo [xi, xf] con n puntos.
-
-    Args:
-        f: La función a graficar.
-        xi: Valor inicial del intervalo.
-        xf: Valor final del intervalo.
-        n: Número de puntos.
-    """
-
-    x = np.linspace(xi, xf, n)
-    y = f(x)
-
-    plt.plot(x, y)
-    plt.xlabel('x')
-    plt.ylabel('f(x)')
-    plt.title('Gráfica de f(x) = x + log(x)')
-    plt.grid(True)
-    plt.show()
+def limpiar_pantalla():
+    """Limpia la pantalla de la consola."""
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def main():
     """Función principal del programa."""
 
     while True:
+        limpiar_pantalla()
         mostrar_menu()
         opcion = input("Ingrese la opción deseada: ")
 
         if opcion == "1":
+            limpiar_pantalla()
             xi, xf, n = obtener_datos_usuario()
-            graficar_funcion(f, xi, xf, n)
+            x = np.linspace(xi, xf, n)
+            y = f(x)
+            plt.plot(x, y)
+            plt.xlabel('x')
+            plt.ylabel('f(x)')
+            plt.title('Gráfica de f(x) = x + log(x)')
+            plt.grid(True)
+            plt.show()
         elif opcion == "2":
+            limpiar_pantalla()
             print("Saliendo del programa...")
             break
         else:
+            limpiar_pantalla()
             print("Opción no válida.")
 
 def mostrar_menu():
+    limpiar_pantalla()
     print("Calculadora de Funciones")
     print("------------------------")
     print("1: Graficar f(x) = x + log(x)")
